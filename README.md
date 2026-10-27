@@ -9,6 +9,26 @@
 
 本节为依据 V0.11 编写的一期历史说明。这是一期的可运行开发增量，支持用户在页面接入仓库，再进行真实 AST 解析、模型协议调用、证据审核与不可变发布。**不是完整 M1/V2.0 验收完成声明**。交付范围与待完成项见[一期开发记录](开发记录_M1_01.md)。应用启动后没有预置业务数据、模型或候选规则。
 
+## 合并后的 AI-Coding 演示平台
+
+原 `ai-coding-bank-demo` 前端已按当前 React + TypeScript + Vite 技术栈并入本仓库：
+
+- 演示平台首页：`/`（AI-Coding Demo Portal）；Studio 登录页通过演示平台左侧「代码工程管理」进入（`/#/studio`）。
+- 演示平台：`/#/portal/overview`，包含总览、iCode 能力、存量系统增量开发、RSI 自演进与 Token 资源监控。
+- 演示平台左侧「代码工程管理」不再提供本地工程页面，单击后跳转 Bank Ontology Studio 登录页。
+- 独立 Vue 演示源码的「代码工程管理」同样改为跳转，目标地址可用 `VITE_STUDIO_HOME_URL` 覆盖（默认 `http://127.0.0.1:8002/`）。
+
+Docker 部署：
+
+```bash
+# 主镜像：构建合并后的前端，由 API 在 / 托管
+docker compose up --build
+
+# 仅前端镜像（nginx 反代 /api 到 BACKEND_UPSTREAM，默认 api:8000）
+docker build -f frontend/Dockerfile -t bank-ontology-ui frontend
+docker run -p 8080:80 -e BACKEND_UPSTREAM=api:8000 bank-ontology-ui
+```
+
 ## 快速启动
 
 要求 Python 3.11+、Node.js 20.19+/22.12+、JDK 21（需要 `java` 和 `javac`）、Git。当前依赖已锁在 `requirements.lock`、`frontend/package-lock.json`。
@@ -19,8 +39,6 @@ uv --cache-dir .cache/uv venv .venv --python python3.12
 uv --cache-dir .cache/uv pip install --python .venv/bin/python -r requirements.lock
 npm --prefix frontend ci --cache .cache/npm
 npm --prefix frontend run build
-npm --prefix demo ci --cache .cache/npm
-npm --prefix demo run build
 ```
 
 已安装的环境可以直接运行以下步骤，无需重新创建虚拟环境。
@@ -43,8 +61,6 @@ npm --prefix demo run build
 打开 [工作区](http://127.0.0.1:8000)，使用默认账号 `admin`、密码 `admin123` 登录；在配置中心 → 账号与密码中可修改密码。默认账号仅首次创建，后续重启不会重置密码。登录会话有效期8小时，退出会撤销当前会话，修改密码使该账号所有会话失效。密码使用随机盐 PBKDF2-SHA256 哈希保存，浏览器仅在内存中保留会话令牌。
 
 接口契约在 [OpenAPI](http://127.0.0.1:8000/docs)。前端修改时也可运行 `npm --prefix frontend run dev`，访问 `http://127.0.0.1:5173`，API 仍使用8000端口。前端构建产物由 API 托管，API 启动前须完成构建。
-
-高保真演示原型由同一 API 在 [http://127.0.0.1:8000/demo/](http://127.0.0.1:8000/demo/) 提供；`demo/` 是纯前端 MOCK（Vue 3 + IndexedDB），不调用后端 API，独立于主控制台。容器镜像会同时构建 `frontend` 与 `demo`。
 
 ## 用户接入流程
 
@@ -112,7 +128,6 @@ export BOS_MODEL_API_KEY='由受控凭据系统注入'
 ```bash
 .venv/bin/python -m pytest -q
 npm --prefix frontend run build
-npm --prefix demo run build
 ```
 
 测试使用临时目录、明确标记的 Java 样例及本地 HTTP 协议 fixture，不加载用户业务仓库，也不证明任何真实模型质量。测试需要允许本机临时端口。`tests/ui_fixture_server.py` 只用于隔离浏览器联调，不能配置为生产模型。

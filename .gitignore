@@ -8,8 +8,6 @@ __pycache__/
 frontend/node_modules/
 frontend/dist/
 frontend/*.tsbuildinfo
-demo/node_modules/
-demo/dist/
 analyzers/javac/build/
 *.db
 

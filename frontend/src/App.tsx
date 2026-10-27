@@ -643,6 +643,9 @@ export default function App() {
       </select>
     </div>
   );
+  const openPortal = () => {
+    window.location.hash = "/portal/overview";
+  };
   if (!me)
     return (
       <div className="login">
@@ -653,7 +656,13 @@ export default function App() {
             </div>
             Bank Ontology Studio
           </div>
-          {globalSettings}
+          <div className="row">
+            <button onClick={openPortal}>
+              <Plug size={15} />
+              {t("AI-Coding 演示平台", "AI-Coding Demo Portal")}
+            </button>
+            {globalSettings}
+          </div>
         </header>
         <main className="login-grid">
           <div>
@@ -782,6 +791,11 @@ export default function App() {
               </ReactFragment>
             );
           })}
+          <div className="group">{t("演示", "DEMO")}</div>
+          <button className="nav" onClick={openPortal}>
+            <Plug size={16} />
+            <span>{t("AI-Coding 演示平台", "AI-Coding Demo Portal")}</span>
+          </button>
           <div className="rail-note">
             <CircleCheck size={14} />
             {t(
