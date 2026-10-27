@@ -1,0 +1,857 @@
+[
+  {
+    "path": ".dockerignore",
+    "sha256": "27dfccae4d779f12c451e4c27a592850104bd5446804b58a6f09bced1089d17c",
+    "bytes": 389
+  },
+  {
+    "path": ".env.example",
+    "sha256": "3b2b332370008a2a540fec0722e671be141b9aff1bb631e8d73f9b75c1674297",
+    "bytes": 1200
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "c5982e7ef38b298bafa17302e9726864a8c294735a00b60eca7bb189a0a33101",
+    "bytes": 189
+  },
+  {
+    "path": "Bank Engineering Ontology Studio V2.0 — 银行业务本体建模与研发智能执行平台需求规格说明书.md",
+    "sha256": "fe1a3f1363b3e9ffc627bdd2dac9376b223320290bf64f93442436c50b122a71",
+    "bytes": 134570
+  },
+  {
+    "path": "Dockerfile",
+    "sha256": "e619afd780007757f55a8c8a78881d31721ec3ed28bf4aaf7f404ba6bfc1d075",
+    "bytes": 1231
+  },
+  {
+    "path": "README.md",
+    "sha256": "521329ea3b774ec4f13544647530e7a4f247ca415cd1ce978eead8d78bae5b88",
+    "bytes": 16690
+  },
+  {
+    "path": "compose.yaml",
+    "sha256": "c466e225ef9b20f36f5598b8a03823777bc5dced35a23c8d2aa21a88b238fa48",
+    "bytes": 2702
+  },
+  {
+    "path": "pyproject.toml",
+    "sha256": "6f3771b39583ae25ea15106f1b168e22f0a4ed08fd0787d16b6dc49d8f6d72c1",
+    "bytes": 561
+  },
+  {
+    "path": "requirements.lock",
+    "sha256": "f0f30bf98653eda1370a0a090f9b8b4545f87707e0477a553ccf46f2c08a5edd",
+    "bytes": 853
+  },
+  {
+    "path": "修复记录_M1_02.md",
+    "sha256": "86ddb340e52f62a825317acd60e3f505fb7e40115f34881da8807cae6be4af16",
+    "bytes": 2691
+  },
+  {
+    "path": "修复记录_M1_03.md",
+    "sha256": "c6e1105f5d1dc355f6dbe869396eb65f3b07ec06e8ff835fe218c66402ba7444",
+    "bytes": 3830
+  },
+  {
+    "path": "修复记录_M1_04.md",
+    "sha256": "57e47d66a8913ca745c7e70bd81041e189d691bfe565f4948ffb93c38627341e",
+    "bytes": 3947
+  },
+  {
+    "path": "修复记录_M1_05.md",
+    "sha256": "0a5ae602802c5b2ee0a0421f4918ddc28ead40b0546192ecfc26953e0fd3369d",
+    "bytes": 4954
+  },
+  {
+    "path": "修复记录_M1_06.md",
+    "sha256": "ec94b46996f68ded5db02a903de4eb65eb873b0dd88bd40b6c7ffdb090fa295a",
+    "bytes": 5104
+  },
+  {
+    "path": "子任务管理设计与实现_M1_07.md",
+    "sha256": "995a4d58f9b0cbe1ba297fa8a6c77ea7833cfcb80a8b4585c5bb46e0112acc41",
+    "bytes": 7506
+  },
+  {
+    "path": "开发记录_M1_01.md",
+    "sha256": "b9d7bded3780d59c780efe4258d082e536bfe1e0e13dd5c3cc6845e6ac28e3af",
+    "bytes": 8451
+  },
+  {
+    "path": "开发记录_M2_01.md",
+    "sha256": "b0480fb6812e9f8790ff6349c002fa76a26f84408005af5f0e22ce7c04b70441",
+    "bytes": 4856
+  },
+  {
+    "path": "开发记录_M2_02.md",
+    "sha256": "cc34cee9990008f81f45dbb3ee4eb49aaa8e908c310a0ee2d6e93f7455d02da1",
+    "bytes": 4568
+  },
+  {
+    "path": "开发记录_M2_03.md",
+    "sha256": "9e13d0cff54023085b230465082e087796ff3de9daee28769f3e6a9919b065ee",
+    "bytes": 4591
+  },
+  {
+    "path": "开发记录_M2_04.md",
+    "sha256": "8fb03d5d29e1f0ff8d364fcf023a093f7e2f7ed32ec7abc5504c3dc680f02b17",
+    "bytes": 5889
+  },
+  {
+    "path": "最小原型开发规划_V0.1.md",
+    "sha256": "17365ac193cd8d5685cbb00195eaced0700ce7f820831c8039e3b1c76c262aa2",
+    "bytes": 19281
+  },
+  {
+    "path": "界面能力详细设计_V0.2.md",
+    "sha256": "444acfc85db48d35a9fe71933a7ebacb1a89c6349375a9341cae233e735d2807",
+    "bytes": 14173
+  },
+  {
+    "path": "需求修订记录_V0.11.md",
+    "sha256": "304c1006c340083c695aa5a860a3970282071ecf25c40466e21fa5ffb8523984",
+    "bytes": 6259
+  },
+  {
+    "path": "需求修订记录_V0.12.md",
+    "sha256": "1a81fab0e28e5fb092378a1e7de0285f5773315b93c6f563c469c176e1cad11b",
+    "bytes": 2042
+  },
+  {
+    "path": "需求修订记录_V0.13.md",
+    "sha256": "0a7d6477cf2eba7a9e97f8d1d3628e3d525f71dd3d8d34646a16fc38912670c1",
+    "bytes": 817
+  },
+  {
+    "path": "需求对照与修订记录_V0.10.md",
+    "sha256": "db6bc572e466ac8f3316d1a104e89d8deabb64e607dfa9cd6918248e7ae98976",
+    "bytes": 8562
+  },
+  {
+    "path": "需求评审意见_V0.10_第二轮.md",
+    "sha256": "8d403c3aaaeef63b5b906f85b3cac6804172658976a1d1fa88880c8f7bc03312",
+    "bytes": 13789
+  },
+  {
+    "path": "首个真实知识发布审批清单.md",
+    "sha256": "2aa4f671d58b2a614f0c00e204901640974ccac02f612a8f6fc635f923b3ed89",
+    "bytes": 3473
+  },
+  {
+    "path": "高保真UI视觉规范_V1.0.md",
+    "sha256": "d50e7c0dc5cc7ec0fb7c498279abaa576be211ef00b2cc14f278d67c49b5b7cb",
+    "bytes": 6687
+  },
+  {
+    "path": "analyzers/javac/SourceAnalyzer.java",
+    "sha256": "2bd8efb36413ff9fa62a2cb0c97f4cbaa473ab38639f7d4e17cf3c4cd61957e3",
+    "bytes": 6391
+  },
+  {
+    "path": "analyzers/joern/Dockerfile",
+    "sha256": "3d167e178aba915d76736e31d2ac16deb4e00cf98437ed1b8cff80897898e6d6",
+    "bytes": 198
+  },
+  {
+    "path": "analyzers/joern/export.sc",
+    "sha256": "30c5f975fe21ea0c427e6969ece875b43ddcffee3c6cc09a559d6e97f759219e",
+    "bytes": 2115
+  },
+  {
+    "path": "analyzers/joern/service.py",
+    "sha256": "b9047cebe3e4d9d7a8c0cd6e19f33807572b5fc2e8b58951880df06207a2f999",
+    "bytes": 4505
+  },
+  {
+    "path": "backend/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "bytes": 1
+  },
+  {
+    "path": "backend/api.py",
+    "sha256": "93927a617b48581a1c2411cade0f9c4a9d70cc2a495ee04868b7b7a6eb1338cf",
+    "bytes": 31852
+  },
+  {
+    "path": "backend/auth.py",
+    "sha256": "d650e18fbfebbfd6be72527d2b9178f0e6504e47eeab9d9c9a2f633875bf47b3",
+    "bytes": 4240
+  },
+  {
+    "path": "backend/codegraph.py",
+    "sha256": "7148cac0df29909f2f369dddb0c2f77208012bb99331d9a6c3382fcd9313cc4a",
+    "bytes": 5079
+  },
+  {
+    "path": "backend/config.py",
+    "sha256": "be2980cc51547515f6780cc9d7716959886232b233401b5ac11dc1b603aa7b32",
+    "bytes": 2240
+  },
+  {
+    "path": "backend/context.py",
+    "sha256": "9c97dfe18917affa29147402061adf36f325b9967ac838b69e187378a9f7f3b3",
+    "bytes": 9862
+  },
+  {
+    "path": "backend/contracts.py",
+    "sha256": "26c9d76a7624aecb3aac17831d057add54e9279da9a003945fbc4e4bf53a7fbe",
+    "bytes": 2361
+  },
+  {
+    "path": "backend/credentials.py",
+    "sha256": "71fa81623b65e7d344f32c81923fa2f51d362208aae622f0322967c12895bd0f",
+    "bytes": 2083
+  },
+  {
+    "path": "backend/evaluation.py",
+    "sha256": "82290c8711e7b34e321acb1f5c0e9545046b6d0c6014a1dfe386d9bc21c99709",
+    "bytes": 8315
+  },
+  {
+    "path": "backend/execution.py",
+    "sha256": "c7bdb3cb8980f3156c26298c6881c470bb648d2cf0a880f2053a216096b1c3c1",
+    "bytes": 14314
+  },
+  {
+    "path": "backend/extraction.py",
+    "sha256": "5bea8c5abd11d810e3e189e5f1c81d165989ca76336860d2939fbef8166c12a0",
+    "bytes": 9666
+  },
+  {
+    "path": "backend/graph.py",
+    "sha256": "4bc1a1aeebec8ccce3297afff07ed52e897df5d4ac92a37c5166e923f693dadc",
+    "bytes": 9129
+  },
+  {
+    "path": "backend/manage.py",
+    "sha256": "f2464a65b94149507c53b4add9f072ce8440672b06e632770aa9a806b5359e89",
+    "bytes": 678
+  },
+  {
+    "path": "backend/mcp_server.py",
+    "sha256": "dd778c18d9580eae437dc2d6a0f7531443d9aa392ec1c21c6bae5091e71327dd",
+    "bytes": 4141
+  },
+  {
+    "path": "backend/migrate.py",
+    "sha256": "7146b8f4ea21177ae7b5ea7e55df17c2be46d517d53c1810fffb15677767c8f6",
+    "bytes": 5817
+  },
+  {
+    "path": "backend/models.py",
+    "sha256": "b919435bf6b15788e494cfb4d5f74467a1122d41e2b6d5a67c98b7da906f9e33",
+    "bytes": 15998
+  },
+  {
+    "path": "backend/ontology.py",
+    "sha256": "be10e1e655ff2cc26b3a627018a65934a056c0fda0b465c37ee38642b525dbb7",
+    "bytes": 4586
+  },
+  {
+    "path": "backend/recovery.py",
+    "sha256": "8767069c1361f37b494358f4dfc13d21c007818ff5e346e84e87f6bec8cffe24",
+    "bytes": 9432
+  },
+  {
+    "path": "backend/service.py",
+    "sha256": "9c9bfe9ff40a7a9e85f937cc122cbc0766aa3814d57f3967e9014239b168ab80",
+    "bytes": 25712
+  },
+  {
+    "path": "backend/sources.py",
+    "sha256": "46737f85328ee3da469d9a4946e56fffa2aee40a27cde5bd3633d209b0a30071",
+    "bytes": 10437
+  },
+  {
+    "path": "backend/store.py",
+    "sha256": "cd2af0184c182f39166792041f6639f54cc2303cba103e59b2fe7c4db64f50a3",
+    "bytes": 2990
+  },
+  {
+    "path": "backend/subtasks.py",
+    "sha256": "31f622a24ec075b83b716e57e8e200e548a7e5256ea377898c2bb5fc79d251cf",
+    "bytes": 9711
+  },
+  {
+    "path": "backend/worker.py",
+    "sha256": "7fd30b44fbd136a1cfb77f74d15b931d9f04897dacd16a817aa4db61ba90b91d",
+    "bytes": 1064
+  },
+  {
+    "path": "backend/workspace.py",
+    "sha256": "7885e8fed2c740e8fcee4caf571610770f44becabda1a7476e5e6fa2173628f5",
+    "bytes": 6425
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/pom.xml",
+    "sha256": "257580b0dfadfd000399c84ac3169743af87a8a2a3b3a3cdf8927795cb82effd",
+    "bytes": 3885
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/.gitignore",
+    "sha256": "cdbcae15105d6b781e620813c79c7e868740d4e9cc53ce6f5fcbbc12387adf4b",
+    "bytes": 2
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/AGENTS.md",
+    "sha256": "9b31190d480b733ff1eb38eedf78dd64ce11f08a308e895e40cc1b5fe0d66af1",
+    "bytes": 157
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/package.json",
+    "sha256": "74f133f519df92256d9bffaaa347d3115b1a4c101c8fa8c8521260c93da4c7b6",
+    "bytes": 79
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/.codebase/upload_state.json",
+    "sha256": "093d98e4cffc6c58d786390a2b761c19f686a1287b24c165d1400e0b67377419",
+    "bytes": 241
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/.codebase/full.lock/meta.json",
+    "sha256": "fa57a70be3025a38d99f50e11b03d9c6c00e90149e146598ebfbc7d8d868eb4c",
+    "bytes": 37
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/mcp/mcp_settings.json",
+    "sha256": "38935ac9bd01a9a91be32d16fc131d8b9d46fbcede88855e85c01f31c7347615",
+    "bytes": 22
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/rule/metadata.properties",
+    "sha256": "a15ef0f3a1483484342dc2f76e2039874229bc60ff522adf0ee44439d7805e9c",
+    "bytes": 16
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/.codeartsdoer/skills/ProjectSkillStatus.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/EpsApplication.java",
+    "sha256": "3a8cca332141f5b2148e9bc83617a42c0cafe76fc7393ac47f80358ec1014f8b",
+    "bytes": 1461
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/config/ChannelConfig.java",
+    "sha256": "1d11039b19a4fd1173d957b8629f28883325e2d09021a2839126e085e83efece",
+    "bytes": 2288
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/config/QuartzConfig.java",
+    "sha256": "61c65f1d70dfd2877c86843bda345d0da983f8f9f8d1da886afb615fcc9f69e4",
+    "bytes": 5596
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/config/SwaggerConfig.java",
+    "sha256": "cacce05c94f736b91cd2bc6355e3c7e557c453476a9878949ac5c2a41acd6018",
+    "bytes": 5934
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/ComplianceController.java",
+    "sha256": "6423919a6ec43b54561b7b57afc4015da48fde57010aa75798cc68ac200f0f91",
+    "bytes": 14197
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/GlController.java",
+    "sha256": "c4cf541f385441d8b4d690d5aaa117a1dc44df7fd1a60bf6ea92e8531544d160",
+    "bytes": 11830
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/HealthController.java",
+    "sha256": "754033d9e369f5572c2b7c8aa1306718608729fd410a3f04664d5f61366c0659",
+    "bytes": 5712
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/LiquidityController.java",
+    "sha256": "5443081606815907dc2f5a4acf8724a807d106c32dddd89ae0116d8603bc7d88",
+    "bytes": 13490
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/PaymentController.java",
+    "sha256": "c58e1bb224b9ccde61667bdae0cd95243ec7be0c9937187cf0eaa502717f2b8b",
+    "bytes": 21634
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/ReconciliationController.java",
+    "sha256": "bea76569e93ca380b2710fefa6b216f7c9fae6e881cc4d65f9850ae0554b2cd7",
+    "bytes": 16170
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/RefundController.java",
+    "sha256": "e1968fc2a6a12d1f4ab988677264a98334187b14ed2298e7f574987be739f3fc",
+    "bytes": 8621
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/controller/ReportController.java",
+    "sha256": "3d8292bce7d1c543f4f07d58a59ce2d52dc417b5cae43c403a17b13cbc22d449",
+    "bytes": 21607
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/ApiResponse.java",
+    "sha256": "928439ce100fe59e56cea680a33d3cba6bea0fe15bcacf45b6d3ecb1b6592e17",
+    "bytes": 4019
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/ApprovalRequest.java",
+    "sha256": "24a2fb1f579828a42385b2831c76ef25a9855b8b0e58ab82821798c4f228c012",
+    "bytes": 1177
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/BatchPaymentRequest.java",
+    "sha256": "26071267465bb9c4d9d2a778073531ea244a5e56d4f21c15003e228db3d4e88e",
+    "bytes": 1091
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/PaymentRequest.java",
+    "sha256": "4aac33ffe99f2a7aff326ec71f5e762069c2d87b28dee24c69fdcdc4e1fddb02",
+    "bytes": 3972
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/PaymentResponse.java",
+    "sha256": "f3ed510a99e1b745c9065abeed41478b9bba7de889d7246e48c275a9fd050667",
+    "bytes": 2403
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/dto/ReconResultDto.java",
+    "sha256": "9dd32ade2fb8a5c08e01c4e0b6c0a7c250fbaf7e91fe33db38f206fe005f1cc8",
+    "bytes": 1829
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/AuditLog.java",
+    "sha256": "15af52186d5da02f53ddc1aba063ad4b491e0029f4cd936b82a900d636c64c24",
+    "bytes": 2101
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/BankConfig.java",
+    "sha256": "99b17a5410fbc6c638e2c7ce22a7b68420c3a115cb0977c7fab1e99470235e9b",
+    "bytes": 2304
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/FxRate.java",
+    "sha256": "5e0f7e445520d529b60ec45b9096432d3ed25cf845b1770fc28c38aacd020420",
+    "bytes": 2126
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/FxRateId.java",
+    "sha256": "0f4d8f6a8ce152dea7db44cbdfe7d4f92a57288b0efff3f130f2aa4f139858e6",
+    "bytes": 684
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/GlVoucher.java",
+    "sha256": "508faa2975cd02d725951ba98b6cc5e39bd45cdd9f3ae78560d4a929d7d0fa05",
+    "bytes": 2379
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/InternalAccount.java",
+    "sha256": "de60dcd4210207c9176d04f61a4b2ce6fc72c19624fa6d3e9da03921038dcbd5",
+    "bytes": 2105
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/PaymentDetail.java",
+    "sha256": "be4cadf860d573fe86c4a270e51a147ce121850796609f24b69fa206ef685ec8",
+    "bytes": 1536
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/PaymentDetailId.java",
+    "sha256": "bd4ed05f99837aa6e0599ae08191c37cfb57dc6809ce3b19ada1b370ed301714",
+    "bytes": 619
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/PaymentInstruction.java",
+    "sha256": "dae285a435ebc57fc91789cb903213f02a62333b35d52e300b888a69d6b67226",
+    "bytes": 4630
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/ReconMatch.java",
+    "sha256": "c835112c031fa3f8e7163007113218a85c21ca5b452f105beebbcf341f7047f8",
+    "bytes": 2309
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/SanctionsEntry.java",
+    "sha256": "63fd7c9eef397280cf95739a627c97bab1bc4bae40ed84ee08e61e2a806c61c4",
+    "bytes": 2584
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/StatementLine.java",
+    "sha256": "511f1dd8770271d00c3dbac61290d9ba18ce8d0ab06a67ae638bee3df87b30a0",
+    "bytes": 2838
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/StatementLineId.java",
+    "sha256": "e0aee8e911c07eaef43054a35388f5800674b0b2ddf790a311faa10a31ebc091",
+    "bytes": 650
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/enums/AccountStatus.java",
+    "sha256": "c4945a6b73727ba804720d621112157933da89cd0e9d19ed4ca6e167286175e2",
+    "bytes": 301
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/enums/ChannelType.java",
+    "sha256": "2f3c3fee000ac9365a6d67e28f7f35e80a7f63e74035843b0efa5a70882c1986",
+    "bytes": 443
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/enums/MatchStatus.java",
+    "sha256": "9387fb42ace15377ea770aa824832fb8654b788899739963e7a3871268f1ae1d",
+    "bytes": 440
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/enums/PaymentStatus.java",
+    "sha256": "3e94cb6edc6f38265320f3e2004f1fb0acb49172b865905aa8beefe253c1c611",
+    "bytes": 698
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/entity/enums/PostStatus.java",
+    "sha256": "d345f9ce9b601d06bfbf7c10ed4593dac641c25d8fb60f5b8ae68334ad18dd19",
+    "bytes": 299
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/DuplicatePaymentException.java",
+    "sha256": "05d8237d015df2a913a451dffd85f7daadff64b04fe65de0d90211071309e8c3",
+    "bytes": 1179
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/GlobalExceptionHandler.java",
+    "sha256": "ad1c6f8a389bacb9deb6aee5b44e56cac349089a6190fc855c9437f96f931b4a",
+    "bytes": 11612
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/InsufficientFundsException.java",
+    "sha256": "f77ab70070af1af69988f73583b2a521c997a97e0d5a5b9e7a3b332cc0e3ba94",
+    "bytes": 2921
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/PaymentNotFoundException.java",
+    "sha256": "6a7807f2591b9284c003e660429dcddc8e092a7ee9e11c03c6b6390fdec17e1e",
+    "bytes": 1076
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/PaymentValidationException.java",
+    "sha256": "a7e606e5da47ab1c77bae35227c283e8d681c8a8bca7de05401bea5e722dcc5d",
+    "bytes": 2622
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/ReconciliationException.java",
+    "sha256": "c53a10a5a4fab405d3b6544fd648c18d4005789401b3c24932df404ed6644d53",
+    "bytes": 1773
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/exception/UnauthorizedException.java",
+    "sha256": "7814eea9f42b6bbe1b23c1041361e3e6a66613a1720a6a7630ee0359874ff95f",
+    "bytes": 1665
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/AuditLogRepository.java",
+    "sha256": "952184fcbfa3dcbbfdf2f5b7991381b699e1a5168b0c45d3aeb6a55e63c2543e",
+    "bytes": 2564
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/BankConfigRepository.java",
+    "sha256": "6eccd44ee42b42354996ba95806b68743c33a99e7a51de194799b234524cc4a5",
+    "bytes": 1300
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/FxRateRepository.java",
+    "sha256": "be2e1d8da9271773725cf1f9aa79910c6f7dca1084bddb1e69b8c8dd655f09e6",
+    "bytes": 1812
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/GlVoucherRepository.java",
+    "sha256": "887927ba5fa80201deba872ed94cacd905426fd3dd73d67f71c593d23b7729cb",
+    "bytes": 1693
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/InternalAccountRepository.java",
+    "sha256": "7becc41168a7e70d86360b3a0ed6e55f9349be60baf3c7072356c710f57bfe23",
+    "bytes": 2183
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/PaymentInstructionRepository.java",
+    "sha256": "271d79a3fb070912123abe0d563ff5f6f9bafc1122dfc30240912ed1b8ad5762",
+    "bytes": 7758
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/ReconMatchRepository.java",
+    "sha256": "2e28bf7809a3ec54cef91b655c7cb3112dd6e89bb41fb1ff30dec134f8647bc8",
+    "bytes": 2463
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/SanctionsEntryRepository.java",
+    "sha256": "df3824ad16736255517b5b17bee32bff7d06831c00ea59cd6c9863fc99150ee5",
+    "bytes": 2409
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/repository/StatementLineRepository.java",
+    "sha256": "b16d5747335c707fd657d5897adaf331e403bcec3a22f4664cde7ce4ab64660b",
+    "bytes": 2363
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/compliance/ComplianceService.java",
+    "sha256": "6d8a02b28cd4913dd21b566f60352e43bce294e0170414ee40d6aadd9a9f05e6",
+    "bytes": 43702
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/gl/GlPostingService.java",
+    "sha256": "d568de729ec84f9e0b3cc242b6f5f9735c9d671227bc9d64b8ce4514d67da20d",
+    "bytes": 33245
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/liquidity/LiquidityService.java",
+    "sha256": "866925cf0534359004fb02b68cd476ef24e93bfbdab8fb182c8ca10e2496420f",
+    "bytes": 33532
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/payment/PaymentService.java",
+    "sha256": "4998c24fd8f1f87a655a949370193f774a0f85920dbcbeb8351e76c748564967",
+    "bytes": 35567
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/recon/ReconciliationService.java",
+    "sha256": "98076606cdab113ca1472899ddb7424afe30ee58fac1fd63c0e00b7c2f8d160f",
+    "bytes": 40910
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/service/refund/RefundService.java",
+    "sha256": "99f54c867c3abdbc1a0d3c6ad937538571756d6c56f6b13156f19d35cb2c9ce5",
+    "bytes": 25310
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/AuditLogger.java",
+    "sha256": "95326c481f2368e8b31820f51b67617bdb844ff392c7ca2127fefd5821b41c14",
+    "bytes": 9740
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/BusinessDayCalculator.java",
+    "sha256": "979206d6d171fa5475c2bc380e4f0b32ab0c395f5cc280d4c176c8e40b9a792b",
+    "bytes": 12717
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/CurrencyUtil.java",
+    "sha256": "3ca78e83df7910c7f5ba6e6c545be245186e617678d4342e367756083b30b19e",
+    "bytes": 10004
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/GiroFileBuilder.java",
+    "sha256": "b287facf83b27f7f860e7cf620c73118b2b0035a02843f4ed6c5d8e1de200111",
+    "bytes": 13496
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/Iso20022MessageBuilder.java",
+    "sha256": "b84c22a734628f31fe65379f8d88602ceec6c8fcc241413e92e1fc4dce63f220",
+    "bytes": 21060
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/LevenshteinDistance.java",
+    "sha256": "82389584ba71bc3d585989817d7b7c558f44411ef74214bd4940b611f57ab220",
+    "bytes": 9265
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/PaymentRefGenerator.java",
+    "sha256": "a88d91c507a519f1e549dde59a18addecba949402ad4e78a49b8f8be6e648a72",
+    "bytes": 6476
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/SwiftMessageBuilder.java",
+    "sha256": "8ee8130eb6beecd04c3e418c831a368a1ed009c9bfa910711335cf2c2592d927",
+    "bytes": 15287
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/java/com/eps/util/ValidationUtils.java",
+    "sha256": "fdd082fdb510f378a9b89c152fda2b6aea39ae384a4266172e0e7f312c94b5d6",
+    "bytes": 13185
+  },
+  {
+    "path": "demo-repo/huajun-eps-java/src/main/resources/application.yml",
+    "sha256": "372076468e45288620e42b67b02d731a20b732b01d8d2a3667b03ace5b848858",
+    "bytes": 6220
+  },
+  {
+    "path": "deploy/README.md",
+    "sha256": "853b5d122eeebdc7f7f02acbaabf9c9af0567c74a03ba9a75577af71ab59b9aa",
+    "bytes": 10726
+  },
+  {
+    "path": "frontend/index.html",
+    "sha256": "669be9b6f1e9220371093f3b63e7cfa9306e0ef921ed0f22f24d7d3588305ba6",
+    "bytes": 364
+  },
+  {
+    "path": "frontend/package-lock.json",
+    "sha256": "b6f0d0ff47e0bc7bae5f17dab34d9e2e4298afbb5416e306760146ab2aa4995a",
+    "bytes": 63519
+  },
+  {
+    "path": "frontend/package.json",
+    "sha256": "e5f7a2b0b866d73b06ccaa949fc9851dee9b7b9c5655ec901c696fdb679b76f7",
+    "bytes": 620
+  },
+  {
+    "path": "frontend/tsconfig.json",
+    "sha256": "9b153ad700c11cf2eb3cdbaf4a8bd4868dc4c37ef41a8724a923e8f49affd251",
+    "bytes": 360
+  },
+  {
+    "path": "frontend/vite.config.ts",
+    "sha256": "3a8665f77f621ddfe436b7767e5d780a571f67fd70fe8635af1f32df6c08fa8f",
+    "bytes": 238
+  },
+  {
+    "path": "frontend/src/App.tsx",
+    "sha256": "c4c13b1d0668fa046e56f91b25d131b5ee90a0f19511036570b8116bb19dde19",
+    "bytes": 125725
+  },
+  {
+    "path": "frontend/src/ContextPanel.tsx",
+    "sha256": "c514531b9222b96b94c0aa5ca27a93b8dc48c19da22196ef27b05abc24251fee",
+    "bytes": 7608
+  },
+  {
+    "path": "frontend/src/EngineSettings.tsx",
+    "sha256": "b4beecbb208293a79cd625e24ca324468df71fb5f5416cd7ccd358cdb0969edb",
+    "bytes": 2964
+  },
+  {
+    "path": "frontend/src/EvaluationPanel.tsx",
+    "sha256": "5403c07ffbbec41c2b29de98fd337b2aae1100b57773cfe0b5acd08287d5adbf",
+    "bytes": 7456
+  },
+  {
+    "path": "frontend/src/Graph.tsx",
+    "sha256": "639bd724764b971d891492e3ddad57658b28cc614838be6f7080b19f70805caf",
+    "bytes": 4226
+  },
+  {
+    "path": "frontend/src/OntologyEditor.tsx",
+    "sha256": "56fce3693527923ecd6761a27831636ae297a70da6726074e822ae1d1ef5f7bc",
+    "bytes": 8744
+  },
+  {
+    "path": "frontend/src/RecoveryAdvice.tsx",
+    "sha256": "9cfa43186828a9365edbd5ecaa929845df3e1e64f46b3dbe7a5a9be2af350e2f",
+    "bytes": 9878
+  },
+  {
+    "path": "frontend/src/SubtaskManager.tsx",
+    "sha256": "f3b630b5cec190f9eec2c8d3213ff0f1aabd6b353b19857814b462414de45b09",
+    "bytes": 18685
+  },
+  {
+    "path": "frontend/src/WorkspaceSettings.tsx",
+    "sha256": "5e7d160b48f0830a232b5eb01a0bd47450c37660b5bdbf835da67b9baa1542ab",
+    "bytes": 2657
+  },
+  {
+    "path": "frontend/src/api.ts",
+    "sha256": "d00d5a3588e3c2a5175c83cf7cf3690e66cc85e943b37498223babffab68deda",
+    "bytes": 765
+  },
+  {
+    "path": "frontend/src/main.tsx",
+    "sha256": "575c9833bc5993d6a7b8db0587b8ecc202809448fd71842c5a4331bec6ee7977",
+    "bytes": 233
+  },
+  {
+    "path": "frontend/src/modelErrors.ts",
+    "sha256": "23035bcb198e8c749744b7c3ce40f12489b833712255cd78806c7b490c8abdb2",
+    "bytes": 10789
+  },
+  {
+    "path": "frontend/src/style.css",
+    "sha256": "e7a2ea87692d1614f76f8a9a0a75b914c33a5b5321272e88d390d3eb9635fa73",
+    "bytes": 19743
+  },
+  {
+    "path": "scripts/configure_opencode.py",
+    "sha256": "617c82f8a66a95ee6d46c975396590732c0a68df324606933a7f8fdc44af1ea0",
+    "bytes": 2023
+  },
+  {
+    "path": "scripts/configure_workspaces.py",
+    "sha256": "0d1f8a351939f87380234838c14b43f82cc545c33c73055737727e6f65ac8117",
+    "bytes": 2915
+  },
+  {
+    "path": "scripts/setup_m2.py",
+    "sha256": "62274a9efc66d3934115e3b05107d5a37ee4ea449b84265e4d8cc5c58d43f38f",
+    "bytes": 1514
+  },
+  {
+    "path": "scripts/start.py",
+    "sha256": "460713fcd585804d096f42e43c4e847c28c29a2bea414270cd9b106b82fb3344",
+    "bytes": 1107
+  },
+  {
+    "path": "scripts/verify_demo_workspace.py",
+    "sha256": "fe98d811c3cef68e516286e81821d28bae16df7cecff1573f410544999ceadfb",
+    "bytes": 4537
+  },
+  {
+    "path": "scripts/verify_m2_graph.py",
+    "sha256": "0e108b01c758cd580a686939aedfe97e66131e0ef6d5ff6d7cd00bbf7bddd2ff",
+    "bytes": 8555
+  },
+  {
+    "path": "scripts/verify_m2_opencode.py",
+    "sha256": "7a42bf91f0b8655a5e5e0fcfc9b3d4f83c21500a5806cd24332fe92c23a77ea2",
+    "bytes": 21906
+  },
+  {
+    "path": "tests/test_auth.py",
+    "sha256": "aa6d0791f0dc87cfefc63f3ff14b03fd975d70a76a07c500d9037eb5fc9acc2c",
+    "bytes": 4898
+  },
+  {
+    "path": "tests/test_m1.py",
+    "sha256": "ff948e796f2ab54006fc24d5ac7f8847f557096830ecdda5696442087b5c1bd5",
+    "bytes": 69661
+  },
+  {
+    "path": "tests/test_m2.py",
+    "sha256": "d15965847a4695ea50c10217ad6332cd657d9b50d96e92c84fcdf39805509114",
+    "bytes": 5634
+  },
+  {
+    "path": "tests/test_m2_ontology.py",
+    "sha256": "fc2d28136682d1150812dbbc4e08e9c74e05291ad9a19602d2db7c2ca335fbdd",
+    "bytes": 5967
+  },
+  {
+    "path": "tests/test_m2_workspace_evaluation.py",
+    "sha256": "626e5de6ea35d374ddd19e5265f245bb1a8ecd7254a915e6962d95e43ff1fecf",
+    "bytes": 7537
+  },
+  {
+    "path": "tests/test_recovery.py",
+    "sha256": "a677ac15856a1a6ffa03ea54ec13769104b7c901c29b919581aecdf288f9ca49",
+    "bytes": 8785
+  },
+  {
+    "path": "tests/ui_fixture_server.py",
+    "sha256": "f17a60dd3c41276e331b085cc3c3dc07f4f2a39da4bfc2c6bcf85e36e37e9f4f",
+    "bytes": 2506
+  },
+  {
+    "path": "归档/V0.10/Bank Engineering Ontology Studio V2.0 — 银行业务本体建模与研发智能执行平台需求规格说明书.md",
+    "sha256": "136e55967cf6e49846a4e70e06c2d6dea9cfcf1066511676ea13afef8d7eb18e",
+    "bytes": 94958
+  },
+  {
+    "path": "归档/V0.11/Bank Engineering Ontology Studio V2.0 — 银行业务本体建模与研发智能执行平台需求规格说明书.md",
+    "sha256": "e0db23377dabd1bbdbfdf6a39e92b972808e07dc393c092c5a0e20e8e5345b0e",
+    "bytes": 124014
+  },
+  {
+    "path": "归档/V0.12/Bank Engineering Ontology Studio V2.0 — 银行业务本体建模与研发智能执行平台需求规格说明书.md",
+    "sha256": "ff0f9824865e20ded9479c3a95794c887f4f60518c4654a4f9e0209641aa3537",
+    "bytes": 133498
+  },
+  {
+    "path": "归档/V0.9/Bank Engineering Ontology Studio V2.0 — 银行业务本体建模与研发智能执行平台需求规格说明书.md",
+    "sha256": "5c4ab16bc37bd8f18f73f864075c8c177d4c3fe0087823e0896fb52c49d56f81",
+    "bytes": 50328
+  }
+]

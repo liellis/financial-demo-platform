@@ -1,0 +1,233 @@
+# =============================================================================
+# EPS (Electronic Payment System) — Application Configuration
+# =============================================================================
+
+server:
+  port: 8080
+  servlet:
+    context-path: /eps
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/plain,text/html
+
+# -----------------------------------------------------------------------------
+# Spring Datasource — H2 in-memory for dev / PostgreSQL for prod
+# -----------------------------------------------------------------------------
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: eps-java
+
+  # ---- Dev profile: H2 in-memory database ----
+  datasource:
+    url: jdbc:h2:mem:epsdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # ---- JPA / Hibernate ----
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 50
+          fetch_size: 100
+    open-in-view: false
+
+  # ---- Jackson ----
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+    time-zone: Asia/Singapore
+
+  # ---- Quartz Scheduler ----
+  quartz:
+    job-store-type: memory
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: EpsScheduler
+            instanceId: AUTO
+          threadPool:
+            threadCount: 10
+            threadPriority: 5
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            isClustered: false
+
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
+logging:
+  level:
+    root: INFO
+    com.eps: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: WARN
+    org.quartz: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/eps-java.log
+    max-size: 100MB
+    max-history: 30
+
+# -----------------------------------------------------------------------------
+# Actuator
+# -----------------------------------------------------------------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,quartz
+  endpoint:
+    health:
+      show-details: when_authorized
+  health:
+    defaults:
+      enabled: true
+
+# =============================================================================
+# EPS Custom Configuration
+# =============================================================================
+eps:
+  # System identity
+  system-id: EPS001
+  institution-code: EPS-BANK
+  institution-name: EPS Payment Bank
+
+  # Cutoff times (HH:mm in Asia/Singapore timezone)
+  cutoff:
+    fast: "17:00"
+    meps: "17:00"
+    paynow: "23:59"
+    giro:
+      inward: "12:00"
+      outward: "15:00"
+    swift:
+      customer: "16:00"
+      interbank: "18:00"
+
+  # Channel configuration — which channels are active
+  channels:
+    fast:
+      enabled: true
+      description: "Fast and Secure Transfers — real-time retail payments"
+    meps:
+      enabled: true
+      description: "MAS Electronic Payment System — high-value RTGS"
+    paynow:
+      enabled: true
+      description: "PayNow — proxy-based instant payments"
+    giro:
+      enabled: true
+      description: "General Interbank Recurring Order — batch ACH"
+    swift:
+      enabled: true
+      description: "SWIFT — cross-border wire transfers"
+
+  # Reconciliation tolerances
+  recon:
+    tolerance:
+      amount: 0.01
+      currency: SGD
+    auto-match-window-days: 5
+    max-unmatched-age-days: 30
+    schedule: "0 0 2 * * ?"    # daily at 2:00 AM
+
+  # Liquidity management
+  liquidity:
+    minimum-reserve-ratio: 0.05
+    warning-threshold-ratio: 0.10
+    critical-threshold-ratio: 0.05
+    forecast-window-hours: 24
+    schedule: "0 */15 * * * ?"  # every 15 minutes
+
+  # GL posting
+  gl:
+    suspense-account: "999999-001"
+    default-currency: SGD
+    batch-size: 500
+    schedule: "0 0 1 * * ?"     # daily at 1:00 AM
+
+  # Refunds
+  refund:
+    max-refund-days: 90
+    require-approval-above: 10000.00
+    auto-approve-below: 100.00
+    schedule: "0 */30 * * * ?"  # every 30 minutes
+
+  # Sanctions / Compliance
+  compliance:
+    screening-enabled: true
+    aml-threshold: 5000.00
+    block-on-hit: true
+    screen-frequency: REALTIME   # REALTIME or BATCH
+    schedule: "0 0 4 * * ?"     # daily at 4:00 AM (batch screening)
+
+  # Reporting
+  reporting:
+    output-directory: reports/
+    default-format: PDF
+    retention-days: 90
+
+  # ISO 20022 message configuration
+  iso20022:
+    namespace: "urn:iso:std:iso:20022:tech:xsd"
+    schema-version: "2019"
+    bic: EPSBSGSGXXX
+
+---
+# =============================================================================
+# Production profile overrides
+# =============================================================================
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:postgresql://${EPS_DB_HOST:localhost}:${EPS_DB_PORT:5432}/${EPS_DB_NAME:epsdb}
+    driver-class-name: org.postgresql.Driver
+    username: ${EPS_DB_USER:eps_user}
+    password: ${EPS_DB_PASSWORD:}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            isClustered: true
+
+logging:
+  level:
+    root: WARN
+    com.eps: INFO
