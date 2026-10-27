@@ -1,10 +1,10 @@
 # M2 本地 Docker 开发环境
 
-当前为二期第二增量，保留一期 SQLite 服务（8000）作为回退；二期独立环境默认在 http://127.0.0.1:8002 。不能同时让两套环境执行同一批业务任务。
+当前为二期第二增量，保留一期 SQLite 服务（8000）作为回退；二期独立环境默认在 http://127.0.0.1:8002 。不能同时让两套环境执行同一批业务任务。容器镜像同时托管主控制台（`/`）与高保真演示原型（`/demo/`）；演示原型为纯前端 MOCK，不调用后端 API。
 
 ## 启动与迁移
 
-在项目根目录运行。需要本机 Docker、Docker Compose、项目 Python 和 OpenCode。依赖使用 `requirements.lock` 和 `frontend/package-lock.json`；基础镜像使用固定版本/内容摘要。
+在项目根目录运行。需要本机 Docker、Docker Compose、项目 Python 和 OpenCode。依赖使用 `requirements.lock`、`frontend/package-lock.json` 和 `demo/package-lock.json`；基础镜像使用固定版本/内容摘要。
 
 ```sh
 .venv/bin/python scripts/setup_m2.py

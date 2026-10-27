@@ -30,7 +30,7 @@
         <button class="text-link" @click="showArchitecture"><AppIcon name="expand" :size="14" />放大查看原图</button>
       </div>
       <button class="architecture-image-button" aria-label="放大 iCode 总体架构图" @click="showArchitecture">
-        <img src="/assets/icode-architecture.png" alt="用户提供的 iCode 整体架构总览：组织级 Harness 管理 iCode-Teams，单机部署 iCode-Core 与 OpenCode，统一监控中心，以及系统自演进 iCode-Talents。">
+        <img :src="architectureImage" alt="用户提供的 iCode 整体架构总览：组织级 Harness 管理 iCode-Teams，单机部署 iCode-Core 与 OpenCode，统一监控中心，以及系统自演进 iCode-Talents。">
       </button>
       <div class="provided-image-caption">原始架构图 · iCode整体架构总览 infographics.png</div>
     </section>
@@ -87,6 +87,7 @@ import { demo } from '../store/demo'
 import { openModal } from '../store/ui'
 
 const router = useRouter()
+const architectureImage = `${import.meta.env.BASE_URL}assets/icode-architecture.png`
 
 const modules = [
   { id: 'agent', icon: 'code', name: 'iCode-Core', desc: '单机部署与编码执行', note: '产品地址待配置 · 当前为演示详情' },

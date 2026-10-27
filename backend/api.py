@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Annotated, Literal
 from fastapi import FastAPI, Depends, File, Form, UploadFile, Request, Query
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -632,6 +632,14 @@ def create_app(settings=None):
     dist = ROOT / "frontend/dist"
     if (dist / "assets").exists():
         app.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
+
+    demo_dist = ROOT / "demo/dist"
+    if (demo_dist / "index.html").exists():
+        @app.get("/demo", include_in_schema=False)
+        def demo_redirect():
+            return RedirectResponse(url="/demo/")
+
+        app.mount("/demo", StaticFiles(directory=demo_dist, html=True), name="demo")
 
     @app.get("/", include_in_schema=False)
     def index():

@@ -19,6 +19,8 @@ uv --cache-dir .cache/uv venv .venv --python python3.12
 uv --cache-dir .cache/uv pip install --python .venv/bin/python -r requirements.lock
 npm --prefix frontend ci --cache .cache/npm
 npm --prefix frontend run build
+npm --prefix demo ci --cache .cache/npm
+npm --prefix demo run build
 ```
 
 已安装的环境可以直接运行以下步骤，无需重新创建虚拟环境。
@@ -41,6 +43,8 @@ npm --prefix frontend run build
 打开 [工作区](http://127.0.0.1:8000)，使用默认账号 `admin`、密码 `admin123` 登录；在配置中心 → 账号与密码中可修改密码。默认账号仅首次创建，后续重启不会重置密码。登录会话有效期8小时，退出会撤销当前会话，修改密码使该账号所有会话失效。密码使用随机盐 PBKDF2-SHA256 哈希保存，浏览器仅在内存中保留会话令牌。
 
 接口契约在 [OpenAPI](http://127.0.0.1:8000/docs)。前端修改时也可运行 `npm --prefix frontend run dev`，访问 `http://127.0.0.1:5173`，API 仍使用8000端口。前端构建产物由 API 托管，API 启动前须完成构建。
+
+高保真演示原型由同一 API 在 [http://127.0.0.1:8000/demo/](http://127.0.0.1:8000/demo/) 提供；`demo/` 是纯前端 MOCK（Vue 3 + IndexedDB），不调用后端 API，独立于主控制台。容器镜像会同时构建 `frontend` 与 `demo`。
 
 ## 用户接入流程
 
@@ -108,6 +112,7 @@ export BOS_MODEL_API_KEY='由受控凭据系统注入'
 ```bash
 .venv/bin/python -m pytest -q
 npm --prefix frontend run build
+npm --prefix demo run build
 ```
 
 测试使用临时目录、明确标记的 Java 样例及本地 HTTP 协议 fixture，不加载用户业务仓库，也不证明任何真实模型质量。测试需要允许本机临时端口。`tests/ui_fixture_server.py` 只用于隔离浏览器联调，不能配置为生产模型。
