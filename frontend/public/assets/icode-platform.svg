@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f5f7fc"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>
+<rect width="1200" height="500" rx="18" fill="url(#bg)"/>
+<g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" text-anchor="middle">
+<text x="600" y="46" fill="#9ba9bc" font-size="11" letter-spacing="3">ICODE · PLATFORM CAPABILITY OVERVIEW</text>
+<text x="600" y="84" fill="#293a53" font-size="25" font-weight="bold">iCode AI 研发能力全景</text>
+<text x="600" y="112" fill="#8a98ae" font-size="12">以工程上下文组织专业能力，以统一任务记录过程与结果</text>
+<rect x="65" y="145" width="1070" height="63" rx="9" fill="#fff4f6" stroke="#ebc5ce"/>
+<text x="600" y="172" fill="#bd2747" font-size="16" font-weight="bold">iCode · 统一研发工作空间</text><text x="600" y="193" fill="#a47d8a" font-size="11">需求与任务 / 工程上下文 / 计划与审批 / 运行与交付</text>
+<g stroke="#d9e1ed" fill="none"><path d="M600 208v20M193 244v-16h814v16M466 228v16M736 228v16"/></g>
+<g fill="#fff" stroke="#dfe6f0"><rect x="65" y="244" width="255" height="116" rx="9"/><rect x="337" y="244" width="255" height="116" rx="9"/><rect x="609" y="244" width="255" height="116" rx="9"/><rect x="881" y="244" width="254" height="116" rx="9"/></g>
+<g fill="#415875" font-size="17" font-weight="bold"><text x="193" y="277">Code Agent</text><text x="465" y="277">Agent Teams</text><text x="737" y="277">Talent / Skills</text><text x="1008" y="277">MCP / Tools</text></g>
+<g fill="#7d90aa" font-size="12"><text x="193" y="308">理解 · 编码 · 调试</text><text x="465" y="308">专业角色 · 任务协作</text><text x="737" y="308">工程规范 · 专业技能复用</text><text x="1008" y="308">研发工具 · 平台连接</text></g>
+<g fill="#a5afbe" font-size="10"><text x="193" y="337">基于批准范围完成增量工作</text><text x="465" y="337">关联输入、输出与协作记录</text><text x="737" y="337">版本、上下文与能力资产</text><text x="1008" y="337">代码、知识、测试及安全工具</text></g>
+<rect x="65" y="385" width="1070" height="65" rx="9" fill="#eef3f9" stroke="#e0e7f1"/><text x="600" y="412" fill="#607996" font-size="14" font-weight="bold">模型与执行环境 · 知识与代码资产 · 质量及资源观测</text><text x="600" y="435" fill="#94a3b8" font-size="11">统一 DemoRun / 源码基线 / Skill 版本 / 事件与证据</text>
+<text x="600" y="479" fill="#a9b2bf" font-size="10">Portal 能力结构示意 · 非正式产品架构图 · 平台接口待接入</text>
+</g></svg>
