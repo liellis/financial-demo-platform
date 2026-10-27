@@ -1,0 +1,1 @@
+# bank-ontology-platform
