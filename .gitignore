@@ -16,3 +16,4 @@ analyzers/javac/build/
 .venv-mcp/
 
 /opencode.json
+.DS_Store
