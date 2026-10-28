@@ -1,3 +1,4 @@
+import logging
 import secrets
 import uuid
 from contextlib import asynccontextmanager
@@ -21,6 +22,37 @@ from .subtasks import list_subtasks, subtask_detail, command_subtasks
 from .recovery import latest_advice, generate_advice, approve_advice
 from .sources import safe_path
 from .store import Conflict, Store
+
+# Trace 监控子包（OTLP 接收 + 查询接口）。依赖缺失时主应用仍可启动。
+try:
+    from .monitor import register as register_monitor
+    from .monitor.lifecycle import shutdown as monitor_shutdown
+    from .monitor.lifecycle import startup as monitor_startup
+except ImportError:  # pragma: no cover - 监控子包依赖不全时降级
+    register_monitor = None
+    monitor_shutdown = None
+    monitor_startup = None
+
+logger = logging.getLogger("bank_ontology")
+
+
+@asynccontextmanager
+async def app_lifespan(app):
+    """应用生命周期：托管监控子包的 engine / sink / 后台任务。
+
+    监控子包任何异常都只记录日志，不影响主应用启动与关闭。
+    """
+    if monitor_startup is not None:
+        try:
+            await monitor_startup(app)
+        except Exception:
+            logger.warning("Trace 监控子包启动失败，相关接口不可用", exc_info=True)
+    yield
+    if monitor_shutdown is not None:
+        try:
+            await monitor_shutdown(app)
+        except Exception:
+            logger.warning("Trace 监控子包关闭失败", exc_info=True)
 
 
 class Body(BaseModel):
@@ -209,7 +241,7 @@ def create_app(settings=None):
     store = Store(settings.database_url)
     studio = Studio(settings, store)
     auth = AuthService(store)
-    app = FastAPI(title="Bank Engineering Ontology Studio", version="0.1.0", description="M1 development API. Single project; no production/Action or MCP claims.")
+    app = FastAPI(title="Bank Engineering Ontology Studio", version="0.1.0", description="M1 development API. Single project; no production/Action or MCP claims.", lifespan=app_lifespan)
     app.state.studio = studio
     app.state.auth = auth
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "testserver"])
@@ -628,6 +660,13 @@ def create_app(settings=None):
     @app.get("/api/v2/audit-events")
     def audits(actor=Depends(reviewer)):
         return sorted(store.all("audit"), key=lambda a: a["at"], reverse=True)[:200]
+
+    # Trace 监控接口：/api/v1/* 与 OTLP /v1/traces、/v1/metrics（不覆盖 / 与静态挂载）
+    if register_monitor is not None:
+        try:
+            register_monitor(app)
+        except Exception:
+            logger.warning("Trace 监控接口注册失败，相关接口不可用", exc_info=True)
 
     dist = ROOT / "frontend/dist"
     if (dist / "assets").exists():

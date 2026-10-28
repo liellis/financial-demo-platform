@@ -4,7 +4,7 @@ import { openModal } from "../store/ui";
 import { toggleLang, useI18n } from "../i18n";
 import type { PortalPage } from "../router";
 
-const sections: PortalPage[] = ["overview", "platform", "evolution", "resources"];
+const sections: PortalPage[] = ["overview", "platform", "evolution", "resources", "traces", "metrics"];
 
 export default function TopBar({ page }: { page: PortalPage }) {
   useDemo();

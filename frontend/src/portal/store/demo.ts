@@ -172,6 +172,8 @@ export const pageLabels: Record<string, string> = {
   skills: "SDLC Skills 管理",
   develop: "需求输入与 AI 开发",
   resources: "Token 与资源使用监控",
+  traces: "会话轨迹",
+  metrics: "监控指标",
   projects: "代码工程管理",
   evolution: "平台 RSI 自演进",
   business: "业务体验",

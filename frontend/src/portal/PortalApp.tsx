@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ComponentType } from "react";
 import baseCss from "./styles/styles.css?raw";
 import v3Css from "./styles/v3.css?raw";
+import monitorCss from "./styles/monitor.css?raw";
 import SidebarNav from "./components/SidebarNav";
 import TopBar from "./components/TopBar";
 import ContextBar from "./components/ContextBar";
@@ -11,7 +12,7 @@ import { demo, useDemo } from "./store/demo";
 import { ui, useUi } from "./store/ui";
 import { clearFlowTimer } from "./store/flow";
 import { installI18n } from "./i18n";
-import type { PortalPage } from "./router";
+import { hashQuery, portalTraceId, useHash, type PortalPage } from "./router";
 
 import OverviewPage from "./pages/OverviewPage";
 import DevelopmentPage from "./pages/DevelopmentPage";
@@ -26,6 +27,9 @@ import EvolutionPage from "./pages/EvolutionPage";
 import PlatformPage from "./pages/PlatformPage";
 import CorePage from "./pages/CorePage";
 import ResourcesPage from "./pages/ResourcesPage";
+import TracesPage from "./pages/TracesPage";
+import TraceDetailPage from "./pages/TraceDetailPage";
+import MetricsPage from "./pages/MetricsPage";
 
 const pageComponents: Record<PortalPage, ComponentType> = {
   overview: OverviewPage,
@@ -41,6 +45,8 @@ const pageComponents: Record<PortalPage, ComponentType> = {
   platform: PlatformPage,
   core: CorePage,
   resources: ResourcesPage,
+  traces: TracesPage,
+  metrics: MetricsPage,
 };
 
 const detailPages: PortalPage[] = [
@@ -56,14 +62,18 @@ const detailPages: PortalPage[] = [
 export default function PortalApp({ page }: { page: PortalPage }) {
   useDemo();
   useUi();
+  const hash = useHash();
   const styleRef = useRef<HTMLStyleElement | null>(null);
   const isDetail = detailPages.includes(page);
   const Page = pageComponents[page];
+  // 会话轨迹详情：#/portal/traces/<traceId>
+  const traceId = page === "traces" ? portalTraceId(hash) : null;
+  const isMonitorPage = page === "traces" || page === "metrics";
 
   useEffect(() => {
     const style = document.createElement("style");
     style.dataset.portalStyles = "true";
-    style.textContent = `${baseCss}\n${v3Css}`;
+    style.textContent = `${baseCss}\n${v3Css}\n${monitorCss}`;
     document.head.appendChild(style);
     styleRef.current = style;
     document.body.classList.add("v3");
@@ -87,7 +97,7 @@ export default function PortalApp({ page }: { page: PortalPage }) {
   useEffect(() => {
     demo.mobileNav = false;
     window.scrollTo(0, 0);
-  }, [page]);
+  }, [page, traceId]);
 
   return (
     <>
@@ -96,11 +106,15 @@ export default function PortalApp({ page }: { page: PortalPage }) {
       <div className="v3-shell">
         <TopBar page={page} />
         <div className="v3-workspace">
-          <ContextBar />
+          {isMonitorPage ? null : <ContextBar />}
           {isDetail ? <StepProgress page={page} /> : null}
-          <div className={isDetail ? "v3-layout" : "v3-layout wide"}>
+          <div className={`${isDetail ? "v3-layout" : "v3-layout wide"}${traceId ? " trace-detail-layout" : ""}`}>
             <main id="main" className="v3-main">
-              <Page />
+              {traceId ? (
+                <TraceDetailPage traceId={traceId} sessionId={hashQuery(hash, "session")} />
+              ) : (
+                <Page />
+              )}
               {demo.view === "technical" ? (
                 <div className="tech-panel">
                   <b>执行来源 · MOCK / 本地原型</b><br />
@@ -113,7 +127,9 @@ export default function PortalApp({ page }: { page: PortalPage }) {
           </div>
           {page === "core" ? null : (
             <footer className="v3-footer">
-              <span><i className="dot" /> Demo Environment · 交互原型，尚未连接后端</span>
+              {isMonitorPage ? null : (
+                <span><i className="dot" /> Demo Environment · 交互原型，尚未连接后端</span>
+              )}
               <span>统一场景 · 统一运行 · 统一证据 <b>V3.3</b></span>
             </footer>
           )}

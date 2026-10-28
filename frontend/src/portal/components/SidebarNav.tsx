@@ -8,9 +8,11 @@ const navItems = [
   { id: "development", number: "02", name: "存量系统增量开发", desc: "完整研发流程与工作区" },
   { id: "evolution", number: "03", name: "RSI 自演进", desc: "反馈驱动的版本改进" },
   { id: "resources", number: "04", name: "Token 资源监控", desc: "用量与时延成本" },
+  { id: "traces", number: "05", name: "会话轨迹", desc: "调用树 · 节点详情" },
+  { id: "metrics", number: "06", name: "监控指标", desc: "OTel 指标 · 轨迹效率" },
 ];
 
-const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources"];
+const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources", "traces", "metrics"];
 
 const TOKEN_MONITOR_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
 
