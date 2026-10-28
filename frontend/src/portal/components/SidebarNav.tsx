@@ -1,7 +1,7 @@
 import AppIcon from "./AppIcon";
 import { demo, isCompleted, useDemo, workflowItems } from "../store/demo";
 import { openModal } from "../store/ui";
-import { exitPortal, goPortal, type PortalPage } from "../router";
+import { goPortal, type PortalPage } from "../router";
 
 const navItems = [
   { id: "platform", number: "01", name: "iCode 整体功能", desc: "能力全景与模块入口" },
@@ -13,6 +13,8 @@ const navItems = [
 const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources"];
 
 const TOKEN_MONITOR_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
+const TALENT_RSI_URL = "http://127.0.0.1:45980/talents/?role=owner#/projects?project=carddemo&id=a-traj";
+const TEAMS_TRACE_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/team-work";
 
 function sectionOf(page: PortalPage): string {
   if (page === "core") return "platform";
@@ -29,9 +31,17 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
     goPortal(id);
   }
 
-  function goTokenMonitor() {
+  function openNewTab(url: string) {
     demo.mobileNav = false;
-    window.location.href = TOKEN_MONITOR_URL;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  function goTokenMonitor() {
+    openNewTab(TOKEN_MONITOR_URL);
+  }
+
+  function goEvolution() {
+    openNewTab(TALENT_RSI_URL);
   }
 
   function goPlatformHome() {
@@ -40,12 +50,7 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
   }
 
   function openStudio() {
-    try {
-      sessionStorage.setItem("bos.demo.autologin", "1");
-    } catch {
-      /* session storage may be unavailable */
-    }
-    exitPortal();
+    openNewTab(`${window.location.origin}${window.location.pathname}#/studio?autologin=1`);
   }
 
   return (
@@ -92,9 +97,11 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
                 onClick={() =>
                   item.id === "platform"
                     ? goPlatformHome()
-                    : item.id === "resources"
-                      ? goTokenMonitor()
-                      : go(item.id as PortalPage)
+                    : item.id === "evolution"
+                      ? goEvolution()
+                      : item.id === "resources"
+                        ? goTokenMonitor()
+                        : go(item.id as PortalPage)
                 }
               >
                 <span className="theme-number">{item.number}</span>
@@ -119,7 +126,13 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
                           ? "portal-subitem active"
                           : "portal-subitem"
                       }
-                      onClick={() => go(workflow.id as PortalPage)}
+                      onClick={() => {
+                        if (workflow.id === "trace") {
+                          openNewTab(TEAMS_TRACE_URL);
+                          return;
+                        }
+                        go(workflow.id as PortalPage);
+                      }}
                     >
                       <span>02.{index + 1}</span>
                       <b>{workflow.name}</b>

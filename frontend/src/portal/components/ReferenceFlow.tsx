@@ -3,6 +3,18 @@ import { flowItems } from "../store/demo";
 import { openModal } from "../store/ui";
 import { goPortal, type PortalPage } from "../router";
 
+const TALENT_KNOWLEDGE_URL =
+  "http://127.0.0.1:45980/talents/?role=owner#/projects?project=carddemo&id=a-cg-java";
+
+const TALENT_RSI_URL =
+  "http://127.0.0.1:45980/talents/?role=owner#/projects?project=carddemo&id=a-traj";
+
+const TEAMS_TOKENS_URL =
+  "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
+
+const TEAMS_TRACE_URL =
+  "http://127.0.0.1:45970/teams?demo-role=owner#/team-work";
+
 export default function ReferenceFlow({ scope = "overview" }: { scope?: "overview" | "development" }) {
   function go(id: PortalPage) {
     goPortal(id);
@@ -57,9 +69,25 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
               </a>
             </div>
             <div className="reference-stages">
-              {flowItems.map((stage, index) => (
+              {flowItems.map((stage, index) => {
+                const externalUrl =
+                  overview && stage.id === "knowledge"
+                    ? TALENT_KNOWLEDGE_URL
+                    : overview && stage.id === "trace"
+                      ? TEAMS_TRACE_URL
+                      : "";
+                return (
                 <div key={stage.id} className="reference-stage">
-                  <a href={`#/portal/${stage.id}`} onClick={(e) => { e.preventDefault(); go(stage.id as PortalPage); }}>
+                  <a
+                    href={externalUrl || `#/portal/${stage.id}`}
+                    target={externalUrl ? "_blank" : undefined}
+                    rel={externalUrl ? "noopener noreferrer" : undefined}
+                    onClick={(e) => {
+                      if (externalUrl) return;
+                      e.preventDefault();
+                      go(stage.id as PortalPage);
+                    }}
+                  >
                     <span className="reference-stage-top">
                       <small>0{index + 1}</small>
                       <AppIcon name={stage.icon} size={18} />
@@ -72,13 +100,23 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
                     {stage.roles.map((role) => <span key={role}>{role}</span>)}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 
           <section className="reference-pillar rsi-pillar">
             {!overview ? <span className="reference-number">3</span> : null}
-            <a href="#/portal/evolution" onClick={(e) => { e.preventDefault(); go("evolution"); }}>
+            <a
+              href={overview ? TALENT_RSI_URL : "#/portal/evolution"}
+              target={overview ? "_blank" : undefined}
+              rel={overview ? "noopener noreferrer" : undefined}
+              onClick={(e) => {
+                if (overview) return;
+                e.preventDefault();
+                go("evolution");
+              }}
+            >
               <span className="reference-pillar-icon"><AppIcon name="spark" size={25} /></span>
               <h3>平台 RSI<br />自演进</h3>
               <p>反馈 · 评测 · 发布</p>
@@ -89,7 +127,16 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
 
           <section className="reference-pillar token-pillar">
             {!overview ? <span className="reference-number">4</span> : null}
-            <a href="#/portal/resources" onClick={(e) => { e.preventDefault(); go("resources"); }}>
+            <a
+              href={overview ? TEAMS_TOKENS_URL : "#/portal/resources"}
+              target={overview ? "_blank" : undefined}
+              rel={overview ? "noopener noreferrer" : undefined}
+              onClick={(e) => {
+                if (overview) return;
+                e.preventDefault();
+                go("resources");
+              }}
+            >
               <span className="reference-pillar-icon"><AppIcon name="chart" size={25} /></span>
               <h3>Token<br />资源监控</h3>
               <p>用量 · 时延 · 成本</p>

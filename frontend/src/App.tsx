@@ -325,11 +325,13 @@ export default function App() {
   useEffect(() => {
     if (me || autoLoginTried.current) return;
     autoLoginTried.current = true;
-    let demoEntry = false;
-    try {
-      demoEntry = sessionStorage.getItem("bos.demo.autologin") === "1";
-    } catch {
-      /* session storage may be unavailable */
+    let demoEntry = window.location.hash.includes("autologin=1");
+    if (!demoEntry) {
+      try {
+        demoEntry = sessionStorage.getItem("bos.demo.autologin") === "1";
+      } catch {
+        /* session storage may be unavailable */
+      }
     }
     if (!demoEntry) return;
     setAutoLoggingIn(true);
@@ -344,6 +346,14 @@ export default function App() {
         setToken(session.access_token);
         setMe(user);
         if (user.role === "agent") setPage("versions");
+        try {
+          sessionStorage.setItem("bos.demo.autologin", "1");
+        } catch {
+          /* session storage may be unavailable */
+        }
+        if (window.location.hash.includes("autologin=1")) {
+          history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/studio`);
+        }
       } catch {
         /* Fall back to the sign-in form when automatic entry is unavailable. */
       } finally {

@@ -122,6 +122,8 @@ export default function PlatformPage() {
             <a
               key={module.id}
               href={module.url || "#"}
+              target={module.url ? "_blank" : undefined}
+              rel={module.url ? "noopener noreferrer" : undefined}
               onClick={(event) => {
                 if (module.url) return;
                 event.preventDefault();
