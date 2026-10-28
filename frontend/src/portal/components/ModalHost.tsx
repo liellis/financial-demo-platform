@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import AppIcon from "./AppIcon";
-import { assets, demo, record, resetDemoState, scenarioName, useDemo } from "../store/demo";
+import { assets, demo, resetDemoState, scenarioName, useDemo } from "../store/demo";
 import { confirmApproval, confirmReview, startDemo } from "../store/flow";
 import { closeModal, openModal, showToast, ui, useUi } from "../store/ui";
 import { goPortal } from "../router";
+import { formatSkillSize } from "../services/skills";
+import { skillCategories } from "../skills/categories";
 
 const drawerTypes = ["evidence", "integrations", "skills", "events", "test-report"];
 
@@ -39,6 +41,13 @@ export default function ModalHost() {
   const current = useUi();
   useDemo();
   const [imageFull, setImageFull] = useState(false);
+  const [skillCategory, setSkillCategory] = useState("");
+  const [skillFile, setSkillFile] = useState<File | null>(null);
+  const [uploadingSkill, setUploadingSkill] = useState(false);
+  const [skillError, setSkillError] = useState("");
+  const [uploadedSkillPath, setUploadedSkillPath] = useState("");
+  const [importedSkills, setImportedSkills] = useState<{ path: string; size: number }[]>([]);
+  const skillFileInput = useRef<HTMLInputElement | null>(null);
 
   const type = current.modal?.type || "";
   const payload = current.modal?.payload || {};
@@ -46,6 +55,11 @@ export default function ModalHost() {
 
   useEffect(() => {
     setImageFull(false);
+    setSkillCategory("");
+    setSkillFile(null);
+    setSkillError("");
+    setUploadedSkillPath("");
+    if (skillFileInput.current) skillFileInput.current.value = "";
   }, [type]);
 
   const eventList = demo.events.length
@@ -89,7 +103,7 @@ export default function ModalHost() {
       case "review":
         return { kicker: "HUMAN REVIEW", title: "确认示例交付评审", desc: "这里只更新本地演练，不会批准真实代码合并或发布。" };
       case "import-skills":
-        return { kicker: "MOCK / PRESENTATION PROTOTYPE", title: "导入场景 Skills 清单", desc: "仅配置本地原型，不安装或执行真实 Skill。" };
+        return { kicker: "LOCAL SKILL IMPORT", title: "本地导入 Skill", desc: "选择分类并上传文件，文件将写入项目 Skill 对应分类目录。" };
       case "skill-detail":
         return { kicker: "MOCK / PRESENTATION PROTOTYPE", title: payload.skill || "Skill 详情", desc: "能力名称为展示示例，真实版本与来源待映射。" };
       case "original-image":
@@ -123,11 +137,61 @@ export default function ModalHost() {
     closeModal();
   }
 
-  function confirmImportSkills() {
-    demo.skillsImported = true;
-    record("MOCK_SKILLS_SELECTED", "选择六类示例能力，未执行安装");
-    closeModal();
-    showToast("已加入本地演示清单");
+  function onSkillFileChange(event: ChangeEvent<HTMLInputElement>) {
+    setSkillFile(event.target.files?.[0] || null);
+    setSkillError("");
+    setUploadedSkillPath("");
+  }
+
+  async function uploadSkill() {
+    setSkillError("");
+    setUploadedSkillPath("");
+    if (!skillCategory) {
+      setSkillError("请选择分类后再上传");
+      return;
+    }
+    if (!skillFile) {
+      setSkillError("请选择要导入的文件");
+      return;
+    }
+    setUploadingSkill(true);
+    try {
+      const url = `/api/skills/upload?category=${encodeURIComponent(skillCategory)}&filename=${encodeURIComponent(skillFile.name)}`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/octet-stream" },
+        body: skillFile,
+      });
+      let data: { ok?: boolean; error?: string; path?: string; size?: number } = {};
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+      if (!response.ok || !data.ok) {
+        const messages: Record<string, string> = {
+          INVALID_CATEGORY: "请选择分类后再上传",
+          INVALID_FILENAME: "文件名不合法",
+          FILE_EXISTS: "同名文件已存在",
+          FILE_TOO_LARGE: "文件过大，最大支持 50 MB",
+          EMPTY_FILE: "文件为空",
+          WRITE_FAILED: "写入失败，请重试",
+          UPLOAD_FAILED: "上传失败，请重试",
+        };
+        throw new Error(messages[data.error || ""] || "上传失败，请重试");
+      }
+      setUploadedSkillPath(data.path || "");
+      setImportedSkills((prev) => [{ path: data.path || "", size: data.size || 0 }, ...prev]);
+      demo.skillsImported = true;
+      window.dispatchEvent(new CustomEvent("skills-updated"));
+      setSkillFile(null);
+      if (skillFileInput.current) skillFileInput.current.value = "";
+      showToast(`已导入 ${data.path}`);
+    } catch (error) {
+      setSkillError(error instanceof Error ? error.message : "上传失败，请重试");
+    } finally {
+      setUploadingSkill(false);
+    }
   }
 
   function selectScenario(kind: "card" | "generic") {
@@ -367,12 +431,52 @@ export default function ModalHost() {
 
         {type === "import-skills" ? (
           <>
-            <div className="detail-section">
-              <p>包含需求澄清、存量理解、影响分析、受控修改、测试执行及交付评审六类能力。真实文件来源与版本待平台接入时确认。</p>
+            <div className="skill-import-form">
+              <label className="skill-import-field">
+                <span>分类 <em>*</em></span>
+                <select
+                  className="form-input"
+                  aria-label="选择分类"
+                  value={skillCategory}
+                  onChange={(event) => setSkillCategory(event.target.value)}
+                >
+                  <option value="">请选择分类</option>
+                  {skillCategories.map((item) => (
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="skill-import-field skill-import-file">
+                <span>文件</span>
+                <input ref={skillFileInput} type="file" aria-label="选择 Skill 文件" onChange={onSkillFileChange} />
+              </label>
             </div>
+            <p className="panel-subtitle" style={{ marginTop: 12 }}>
+              文件将保存到 <code>Skill 分类目录</code>
+            </p>
+            {skillError ? <p className="skill-import-error">{skillError}</p> : uploadedSkillPath ? <p className="skill-import-success">已导入：{uploadedSkillPath}</p> : null}
+            {importedSkills.length ? (
+              <div className="skill-import-list">
+                <b>已导入文件</b>
+                <ul>
+                  {importedSkills.map((item) => (
+                    <li key={item.path}>
+                      <code>{item.path}</code><span>{formatSkillSize(item.size)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            <p className="skill-import-hint">文件保存到平台数据目录，不会自动安装或执行。</p>
             <div className="modal-actions">
-              <button className="btn" onClick={closeModal}>返回</button>
-              <button className="btn btn-primary" onClick={confirmImportSkills}>确认导入本地示例</button>
+              <button className="btn" onClick={closeModal}>取消</button>
+              <button
+                className="btn btn-primary"
+                disabled={uploadingSkill || !skillCategory || !skillFile}
+                onClick={uploadSkill}
+              >
+                <AppIcon name="upload" size={14} />{uploadingSkill ? "正在上传…" : "上传"}
+              </button>
             </div>
           </>
         ) : null}
