@@ -19,6 +19,8 @@ const overrides: Record<string, string> = {
   "研发生产力": "R&D Productivity",
   "研发效能提升": "R&D Efficiency",
   "Token 资源监控": "Token Monitoring",
+  "会话轨迹": "Dev Session Trails",
+  "监控指标": "Trace Metrics",
   "进入查看": "View details",
   "返回": "Back",
   "返回查看": "Back",

@@ -1,10 +1,10 @@
 """Local development credential vault; public records contain opaque references only."""
-import fcntl
 import os
 import re
 import uuid
 from cryptography.fernet import Fernet, InvalidToken
 from .contracts import DomainError
+from .filelock import file_lock
 
 
 class CredentialVault:
@@ -16,8 +16,7 @@ class CredentialVault:
         os.chmod(self.root, 0o700)
         # API and Worker can initialize concurrently. Never replace an existing key.
         fd = os.open(self.root / ".lock", os.O_RDWR | os.O_CREAT, 0o600)
-        with os.fdopen(fd, "r+") as lock:
-            fcntl.flock(lock, fcntl.LOCK_EX)
+        with os.fdopen(fd, "r+") as lock, file_lock(lock):
             key_file = self.root / "master.key"
             if not key_file.exists():
                 if any(self.root.glob("*.enc")):
