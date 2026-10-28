@@ -9,7 +9,7 @@ const sections: PortalPage[] = ["overview", "platform", "evolution", "resources"
 export default function TopBar({ page }: { page: PortalPage }) {
   useDemo();
   const i18n = useI18n();
-  const section = sections.includes(page) ? page : "development";
+  const section = page === "core" ? "platform" : sections.includes(page) ? page : "development";
   const pageLabel = pageLabels[page] || "演示总览";
 
   return (

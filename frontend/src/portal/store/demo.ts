@@ -168,6 +168,7 @@ export const pageLabels: Record<string, string> = {
   overview: "演示总览",
   development: "存量系统开发需求",
   platform: "iCode 平台能力展示",
+  core: "iCode-Core",
   skills: "SDLC Skills 管理",
   develop: "需求输入与 AI 开发",
   resources: "Token 与资源使用监控",

@@ -78,6 +78,10 @@ export default function PlatformPage() {
   useDemo();
 
   function openModule(id: string) {
+    if (id === "agent") {
+      goPortal("core");
+      return;
+    }
     if (id === "resources") {
       goPortal("resources");
       return;

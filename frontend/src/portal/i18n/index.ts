@@ -151,6 +151,9 @@ const overrides: Record<string, string> = {
   "信用卡返现是可替换的场景模板；本页为本地前端试算。": "Credit card cashback is a replaceable scenario template; this page is a local front-end trial calculation.",
   "需求规格、实施计划、人工确认与 Agent 执行共享同一次运行。": "Requirement specs, implementation plan, manual confirmation and Agent execution share the same run.",
   "组织级管理、多引擎核心部署、自演进与全链路监控。": "Organization-level management, multi-engine core deployment, self-evolution and end-to-end monitoring.",
+  "放大 CLI 图片": "Zoom CLI image",
+  "放大 IDE 图片": "Zoom IDE image",
+  "放大 GUI 图片": "Zoom GUI image",
 };
 
 export const en: Record<string, string> = { ...autoEn, ...overrides };

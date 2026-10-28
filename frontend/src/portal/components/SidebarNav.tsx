@@ -15,6 +15,7 @@ const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources"
 const TOKEN_MONITOR_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
 
 function sectionOf(page: PortalPage): string {
+  if (page === "core") return "platform";
   if (tabPages.includes(page)) return page;
   return "development";
 }
@@ -36,6 +37,15 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
   function goPlatformHome() {
     demo.platformTab = "overview";
     go("platform");
+  }
+
+  function openStudio() {
+    try {
+      sessionStorage.setItem("bos.demo.autologin", "1");
+    } catch {
+      /* session storage may be unavailable */
+    }
+    exitPortal();
   }
 
   return (
@@ -124,7 +134,7 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
       </div>
 
       <div className="v3-sidebar-bottom">
-        <button className="project-management-nav" onClick={exitPortal} title="返回 Bank Ontology Studio 首页">
+        <button className="project-management-nav" onClick={openStudio} title="返回 Bank Ontology Studio 首页">
           <AppIcon name="folder" size={16} /> 代码工程管理
           <AppIcon name="arrow" size={13} />
         </button>

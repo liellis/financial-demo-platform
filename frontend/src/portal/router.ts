@@ -12,6 +12,7 @@ export const portalPages = [
   "business",
   "evolution",
   "platform",
+  "core",
   "resources",
 ] as const;
 

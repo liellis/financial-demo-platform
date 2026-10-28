@@ -24,6 +24,7 @@ import EfficiencyPage from "./pages/EfficiencyPage";
 import BusinessPage from "./pages/BusinessPage";
 import EvolutionPage from "./pages/EvolutionPage";
 import PlatformPage from "./pages/PlatformPage";
+import CorePage from "./pages/CorePage";
 import ResourcesPage from "./pages/ResourcesPage";
 
 const pageComponents: Record<PortalPage, ComponentType> = {
@@ -38,6 +39,7 @@ const pageComponents: Record<PortalPage, ComponentType> = {
   business: BusinessPage,
   evolution: EvolutionPage,
   platform: PlatformPage,
+  core: CorePage,
   resources: ResourcesPage,
 };
 
@@ -109,10 +111,12 @@ export default function PortalApp({ page }: { page: PortalPage }) {
             </main>
             {isDetail ? <RunRail /> : null}
           </div>
-          <footer className="v3-footer">
-            <span><i className="dot" /> Demo Environment · 交互原型，尚未连接后端</span>
-            <span>统一场景 · 统一运行 · 统一证据 <b>V3.3</b></span>
-          </footer>
+          {page === "core" ? null : (
+            <footer className="v3-footer">
+              <span><i className="dot" /> Demo Environment · 交互原型，尚未连接后端</span>
+              <span>统一场景 · 统一运行 · 统一证据 <b>V3.3</b></span>
+            </footer>
+          )}
         </div>
       </div>
       <ModalHost />

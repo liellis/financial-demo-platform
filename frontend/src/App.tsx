@@ -180,11 +180,13 @@ export default function App() {
     [page, setPage] = useState<Page>("sources");
   const [settingsSection, setSettingsSection] = useState<"models" | "extraction" | "appearance" | "account" | "engine" | "workspace">("models");
   const graphLinkHandled = useRef(false);
+  const autoLoginTried = useRef(false);
   const t = (zh: string, en: string) => (lang === "zh" ? zh : en);
   const [token, setToken] = useState(""),
     [loginUsername, setLoginUsername] = useState("admin"),
     [loginPassword, setLoginPassword] = useState(""),
     [me, setMe] = useState<Row | null>(null);
+  const [autoLoggingIn, setAutoLoggingIn] = useState(false);
   const [health, setHealth] = useState<Row>({}),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
@@ -321,6 +323,35 @@ export default function App() {
     setExtractionDefaults(defaults);
   }, []);
   useEffect(() => {
+    if (me || autoLoginTried.current) return;
+    autoLoginTried.current = true;
+    let demoEntry = false;
+    try {
+      demoEntry = sessionStorage.getItem("bos.demo.autologin") === "1";
+    } catch {
+      /* session storage may be unavailable */
+    }
+    if (!demoEntry) return;
+    setAutoLoggingIn(true);
+    (async () => {
+      try {
+        const session = await request("/auth/login", "", "POST", {
+          username: "admin",
+          password: "admin123",
+        });
+        const user = await request("/me", session.access_token);
+        await refresh(session.access_token, user.role);
+        setToken(session.access_token);
+        setMe(user);
+        if (user.role === "agent") setPage("versions");
+      } catch {
+        /* Fall back to the sign-in form when automatic entry is unavailable. */
+      } finally {
+        setAutoLoggingIn(false);
+      }
+    })();
+  }, [me, refresh]);
+  useEffect(() => {
     if (!token || !me) return;
     const timer = setInterval(() => {
       refresh(token, me.role).catch((error: Error) => {
@@ -432,6 +463,11 @@ export default function App() {
     } finally { setBusy(false); }
   }
   function clearSession() {
+    try {
+      sessionStorage.removeItem("bos.demo.autologin");
+    } catch {
+      /* session storage may be unavailable */
+    }
     setPasswordDraft({current: "", next: "", confirm: ""});
     setLoginPassword("");
     setHostConsent(false);
@@ -646,6 +682,7 @@ export default function App() {
   const openPortal = () => {
     window.location.hash = "/portal/overview";
   };
+  if (!me && autoLoggingIn) return null;
   if (!me)
     return (
       <div className="login">
