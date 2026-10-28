@@ -1,15 +1,26 @@
+import { useEffect } from "react";
 import AppIcon from "../components/AppIcon";
 import PageIntro from "../components/PageIntro";
-import { demo, skillRows, useDemo } from "../store/demo";
+import { demo, useDemo } from "../store/demo";
 import { openModal, showToast } from "../store/ui";
 import { goPortal } from "../router";
+import { formatSkillSize, loadSkillFiles, skillDownloadUrl, useSkills } from "../services/skills";
+import { skillCategoryIcons } from "../skills/categories";
 
 export default function SkillsPage() {
   useDemo();
+  const skills = useSkills();
+
+  useEffect(() => {
+    loadSkillFiles();
+    const refresh = () => loadSkillFiles();
+    window.addEventListener("skills-updated", refresh);
+    return () => window.removeEventListener("skills-updated", refresh);
+  }, []);
 
   function next() {
     if (!demo.skillsImported) {
-      showToast("请先导入本地示例 Skills 清单");
+      showToast("请先本地导入 Skill 文件");
       return;
     }
     goPortal("develop");
@@ -19,50 +30,81 @@ export default function SkillsPage() {
     <>
       <PageIntro
         kicker="02 / REUSABLE ENGINEERING SKILLS"
-        title="把已有技能，变成标准研发动作"
+        title="让已有技能，成为标准研发能力"
         desc="按任务组织专业 Skills，为执行提供知识、规范和质量约束。"
       >
         <button className="btn btn-primary" onClick={() => openModal("import-skills")}>
-          <AppIcon name="download" size={14} />{demo.skillsImported ? "查看本地清单" : "导入本地示例"}
+          <AppIcon name="download" size={14} />本地导入 Skill
         </button>
       </PageIntro>
 
       <div className="v3-banner">
         <AppIcon name="layers" size={22} />
         <div>
-          <b>本轮场景能力包 <span>SDLC / 示例能力</span></b>
-          <p>需求工作 → 存量理解 → 影响评估 → 受控开发 → 验证与交付</p>
+          <b>本次场景能力包 <span>SDLC / 示例配置</span></b>
+          <p>理解工程 → 分析需求 → 评估影响 → 增量开发 → 验证与交付</p>
         </div>
         <span className={demo.skillsImported ? "pill success" : "pill pending"}>
-          {demo.skillsImported ? "已加入本地演示" : "待导入示例"}
+          {demo.skillsImported ? "已导入本地 Skill" : "待导入本地 Skill"}
         </span>
       </div>
 
       <section className="panel">
         <div className="panel-heading">
-          <h2 className="panel-title">SDLC Skills 清单</h2>
-          <span className="pill neutral">能力示例 · 版本待映射</span>
+          <div>
+            <h2 className="panel-title">SDLC Skills 清单</h2>
+            <p className="panel-subtitle">按导入分类展示本地文件，可下载查看。</p>
+          </div>
+          <span className={skills.error ? "pill danger" : "pill neutral"}>
+            {skills.error || (skills.loading ? "正在加载本地文件…" : "本地已导入文件")}
+          </span>
         </div>
-        <div className="v3-skill-grid">
-          {skillRows.map((skill) => (
-            <button key={skill.skill} onClick={() => openModal("skill-detail", { skill: skill.skill })}>
-              <span className="module-icon"><AppIcon name={skill.icon} size={20} /></span>
-              <b>{skill.name}</b>
-              <code>{skill.skill}</code>
-              <p>{skill.desc}</p>
-              <span className="text-link">查看能力详情 <AppIcon name="arrow" size={12} /></span>
-            </button>
+        {skills.error ? <p className="skill-category-error">{skills.error}</p> : null}
+        <div className="skill-category-grid">
+          {skills.categories.map((category) => (
+            <article key={category.id} className="skill-category-card">
+              <div className="skill-category-head">
+                <span className="module-icon">
+                  <AppIcon name={skillCategoryIcons[category.id] || "document"} size={20} />
+                </span>
+                <div>
+                  <b>{category.name}</b>
+                  <small>{category.files.length} 个文件</small>
+                </div>
+              </div>
+              {category.files.length ? (
+                <ul className="skill-category-files">
+                  {category.files.map((file) => (
+                    <li key={file.name}>
+                      <span className="skill-category-file">
+                        <code>{file.name}</code>
+                        <small>{formatSkillSize(file.size)}</small>
+                      </span>
+                      <a
+                        className="skill-category-download"
+                        href={skillDownloadUrl(category.id, file.name)}
+                        download={file.name}
+                      >
+                        <AppIcon name="download" size={13} />下载
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="skill-category-empty">暂无导入文件</p>
+              )}
+            </article>
           ))}
         </div>
       </section>
 
       <div className="callout blue">
         <AppIcon name="help" size={16} />
-        <span>此处只维护本地演示清单；真实 Skill 文件、版本与执行命令将在平台接入时映射。</span>
+        <span>导入的文件将写入项目 Skill 对应分类目录，不会自动安装或执行。</span>
       </div>
 
       <div className="v3-next">
-        <span>把专业知识与规范，变成每个任务可组织的能力</span>
+        <span>复用专业知识与规范，减少每次任务重新组织上下文</span>
         <button className="btn btn-primary" onClick={next}>
           进入需求与 AI 开发 <AppIcon name="arrow" size={13} />
         </button>
