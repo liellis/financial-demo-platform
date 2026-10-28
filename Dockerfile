@@ -9,15 +9,21 @@ FROM eclipse-temurin:21.0.8_9-jdk@sha256:7d1d666ddafac14da0ded6b4b076becf76cf88b
 
 FROM python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 BOS_DATA_DIR=/data
+ARG APT_MIRROR=
+ARG PIP_INDEX_URL=
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates libstdc++6 && rm -rf /var/lib/apt/lists/*
+RUN if [ -n "$APT_MIRROR" ]; then \
+      sed -i "s|http://deb.debian.org|$APT_MIRROR|g" /etc/apt/sources.list.d/debian.sources 2>/dev/null || true; \
+      sed -i "s|http://deb.debian.org|$APT_MIRROR|g" /etc/apt/sources.list 2>/dev/null || true; \
+    fi && apt-get update && apt-get install -y --no-install-recommends git ca-certificates libstdc++6 && rm -rf /var/lib/apt/lists/*
 COPY --from=jdk /opt/java/openjdk /opt/java/openjdk
 ENV JAVA_HOME=/opt/java/openjdk PATH=/opt/java/openjdk/bin:$PATH
 COPY requirements.lock ./
 ENV TIKTOKEN_CACHE_DIR=/opt/tiktoken
-RUN pip install --no-cache-dir -r requirements.lock && python -c "import tiktoken; tiktoken.get_encoding('cl100k_base')"
+RUN if [ -n "$PIP_INDEX_URL" ]; then pip install --no-cache-dir --index-url "$PIP_INDEX_URL" -r requirements.lock; else pip install --no-cache-dir -r requirements.lock; fi && python -c "import tiktoken; tiktoken.get_encoding('cl100k_base')"
 COPY backend/ ./backend/
 COPY analyzers/ ./analyzers/
+COPY frontend/src/skills/ ./seed-skills/
 COPY --from=ui /build/dist/ ./frontend/dist/
 RUN mkdir -p /data && javac -d analyzers/javac/build analyzers/javac/SourceAnalyzer.java
 CMD ["python", "-m", "uvicorn", "backend.api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]

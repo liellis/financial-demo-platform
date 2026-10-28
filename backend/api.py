@@ -18,6 +18,7 @@ from .contracts import DomainError, RULE_SCHEMA, identity, digest
 from .service import Studio
 from .context import ContextService
 from . import ontology
+from . import skills as skill_service
 from .subtasks import list_subtasks, subtask_detail, command_subtasks
 from .recovery import latest_advice, generate_advice, approve_advice
 from .sources import safe_path
@@ -314,6 +315,29 @@ def create_app(settings=None):
         return auth.change_password(credentials.credentials, data.current_password.get_secret_value(), data.new_password.get_secret_value())
 
     context = ContextService(studio)
+
+    @app.get("/api/skills/files")
+    def skill_files():
+        return {"ok": True, "categories": skill_service.list_categories(settings)}
+
+    @app.post("/api/skills/upload")
+    async def skill_upload(request: Request, category: str = Query(...), filename: str = Query(...)):
+        length = request.headers.get("content-length")
+        if length and length.isdigit() and int(length) > skill_service.MAX_UPLOAD:
+            return JSONResponse({"ok": False, "error": "FILE_TOO_LARGE"}, status_code=413)
+        payload = await request.body()
+        try:
+            return skill_service.save(settings, category, filename, payload)
+        except skill_service.SkillError as exc:
+            return JSONResponse({"ok": False, "error": exc.code}, status_code=exc.status)
+
+    @app.get("/api/skills/download")
+    def skill_download(category: str = Query(...), filename: str = Query(...)):
+        try:
+            target = skill_service.download(settings, category, filename)
+        except skill_service.SkillError as exc:
+            return JSONResponse({"ok": False, "error": exc.code}, status_code=exc.status)
+        return FileResponse(target, media_type="application/octet-stream", filename=target.name)
 
     @app.get('/api/v2/evaluations/datasets')
     def evaluation_datasets(actor=Depends(reader)):
