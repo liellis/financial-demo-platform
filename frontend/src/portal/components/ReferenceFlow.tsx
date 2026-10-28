@@ -39,7 +39,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
       <div className="reference-flow-scroll">
         <div className="reference-flow-grid">
           <section className="reference-pillar icode-pillar">
-            <span className="reference-number">1</span>
+            {!overview ? <span className="reference-number">1</span> : null}
             <a href="#/portal/platform" onClick={(e) => { e.preventDefault(); go("platform"); }}>
               <span className="reference-pillar-icon"><AppIcon name="code" size={25} /></span>
               <h3>iCode<br />功能展示</h3>
@@ -51,7 +51,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
 
           <section className="reference-main">
             <div className="reference-main-title">
-              <span className="reference-number">2</span>
+              {!overview ? <span className="reference-number">2</span> : null}
               <a href="#/portal/development" onClick={(e) => { e.preventDefault(); go("development"); }}>
                 存量系统增量需求开发 <small>信用卡 Demo · 场景可替换</small>
               </a>
@@ -77,7 +77,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
           </section>
 
           <section className="reference-pillar rsi-pillar">
-            <span className="reference-number">3</span>
+            {!overview ? <span className="reference-number">3</span> : null}
             <a href="#/portal/evolution" onClick={(e) => { e.preventDefault(); go("evolution"); }}>
               <span className="reference-pillar-icon"><AppIcon name="spark" size={25} /></span>
               <h3>平台 RSI<br />自演进</h3>
@@ -88,7 +88,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
           </section>
 
           <section className="reference-pillar token-pillar">
-            <span className="reference-number">4</span>
+            {!overview ? <span className="reference-number">4</span> : null}
             <a href="#/portal/resources" onClick={(e) => { e.preventDefault(); go("resources"); }}>
               <span className="reference-pillar-icon"><AppIcon name="chart" size={25} /></span>
               <h3>Token<br />资源监控</h3>

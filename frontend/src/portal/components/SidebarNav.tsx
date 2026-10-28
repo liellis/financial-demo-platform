@@ -12,6 +12,8 @@ const navItems = [
 
 const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources"];
 
+const TOKEN_MONITOR_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
+
 function sectionOf(page: PortalPage): string {
   if (tabPages.includes(page)) return page;
   return "development";
@@ -24,6 +26,11 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
   function go(id: PortalPage) {
     demo.mobileNav = false;
     goPortal(id);
+  }
+
+  function goTokenMonitor() {
+    demo.mobileNav = false;
+    window.location.href = TOKEN_MONITOR_URL;
   }
 
   function goPlatformHome() {
@@ -72,7 +79,13 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
               <button
                 className={section === item.id ? "theme-nav selected" : "theme-nav"}
                 aria-current={page === item.id ? "page" : undefined}
-                onClick={() => (item.id === "platform" ? goPlatformHome() : go(item.id as PortalPage))}
+                onClick={() =>
+                  item.id === "platform"
+                    ? goPlatformHome()
+                    : item.id === "resources"
+                      ? goTokenMonitor()
+                      : go(item.id as PortalPage)
+                }
               >
                 <span className="theme-number">{item.number}</span>
                 <div>
