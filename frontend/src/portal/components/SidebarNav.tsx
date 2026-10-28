@@ -17,6 +17,8 @@ const tabPages: PortalPage[] = ["overview", "platform", "evolution", "resources"
 const TOKEN_MONITOR_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/home?tab=tokens";
 const TALENT_RSI_URL = "http://127.0.0.1:45980/talents/?role=owner#/projects?project=carddemo&id=a-traj";
 const TEAMS_TRACE_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/team-work";
+const TEAMS_PREPARE_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/projects?project=carddemo&tab=delivery&task=DEMO-MKT-001&node=prepare";
+const TEAMS_VERIFY_URL = "http://127.0.0.1:45970/teams?demo-role=owner#/projects?project=carddemo&tab=delivery&task=DEMO-MKT-001&node=verify";
 
 function sectionOf(page: PortalPage): string {
   if (page === "core") return "platform";
@@ -131,6 +133,14 @@ export default function SidebarNav({ page }: { page: PortalPage }) {
                       onClick={() => {
                         if (workflow.id === "trace") {
                           openNewTab(TEAMS_TRACE_URL);
+                          return;
+                        }
+                        if (workflow.id === "develop") {
+                          openNewTab(TEAMS_PREPARE_URL);
+                          return;
+                        }
+                        if (workflow.id === "quality") {
+                          openNewTab(TEAMS_VERIFY_URL);
                           return;
                         }
                         go(workflow.id as PortalPage);

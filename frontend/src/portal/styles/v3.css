@@ -30,3 +30,4 @@
 .core-form-name{text-align:center;font:600 15px/1.2 ui-monospace,monospace;letter-spacing:.18em;color:#42566f}
 @media(max-width:1060px){.core-forms{gap:16px}}
 @media(max-width:720px){.core-forms{grid-template-columns:1fr;gap:16px;padding-top:0}.core-form-card{aspect-ratio:16/10;border-radius:13px}}
+.reference-flow-grid.development-flow{grid-template-columns:minmax(0,1fr);min-width:780px}

@@ -15,6 +15,12 @@ const TEAMS_TOKENS_URL =
 const TEAMS_TRACE_URL =
   "http://127.0.0.1:45970/teams?demo-role=owner#/team-work";
 
+const TEAMS_PREPARE_URL =
+  "http://127.0.0.1:45970/teams?demo-role=owner#/projects?project=carddemo&tab=delivery&task=DEMO-MKT-001&node=prepare";
+
+const TEAMS_VERIFY_URL =
+  "http://127.0.0.1:45970/teams?demo-role=owner#/projects?project=carddemo&tab=delivery&task=DEMO-MKT-001&node=verify";
+
 export default function ReferenceFlow({ scope = "overview" }: { scope?: "overview" | "development" }) {
   function go(id: PortalPage) {
     goPortal(id);
@@ -49,7 +55,8 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
       </div>
 
       <div className="reference-flow-scroll">
-        <div className="reference-flow-grid">
+        <div className={overview ? "reference-flow-grid" : "reference-flow-grid development-flow"}>
+          {overview ? (
           <section className="reference-pillar icode-pillar">
             {!overview ? <span className="reference-number">1</span> : null}
             <a href="#/portal/platform" onClick={(e) => { e.preventDefault(); go("platform"); }}>
@@ -60,10 +67,10 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
             </a>
             <div className="reference-support"><span>Core</span><span>Teams</span><span>Talent</span></div>
           </section>
+          ) : null}
 
           <section className="reference-main">
             <div className="reference-main-title">
-              {!overview ? <span className="reference-number">2</span> : null}
               <a href="#/portal/development" onClick={(e) => { e.preventDefault(); go("development"); }}>
                 存量系统增量需求开发 <small>信用卡 Demo · 场景可替换</small>
               </a>
@@ -71,11 +78,15 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
             <div className="reference-stages">
               {flowItems.map((stage, index) => {
                 const externalUrl =
-                  overview && stage.id === "knowledge"
+                  stage.id === "knowledge"
                     ? TALENT_KNOWLEDGE_URL
-                    : overview && stage.id === "trace"
+                    : stage.id === "trace"
                       ? TEAMS_TRACE_URL
-                      : "";
+                      : stage.id === "develop"
+                        ? TEAMS_PREPARE_URL
+                        : stage.id === "quality"
+                          ? TEAMS_VERIFY_URL
+                          : "";
                 return (
                 <div key={stage.id} className="reference-stage">
                   <a
@@ -105,6 +116,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
             </div>
           </section>
 
+          {overview ? (
           <section className="reference-pillar rsi-pillar">
             {!overview ? <span className="reference-number">3</span> : null}
             <a
@@ -124,7 +136,9 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
             </a>
             <div className="reference-support"><span>Talent</span></div>
           </section>
+          ) : null}
 
+          {overview ? (
           <section className="reference-pillar token-pillar">
             {!overview ? <span className="reference-number">4</span> : null}
             <a
@@ -144,6 +158,7 @@ export default function ReferenceFlow({ scope = "overview" }: { scope?: "overvie
             </a>
             <div className="reference-support"><span>监控中心</span></div>
           </section>
+          ) : null}
         </div>
       </div>
 
